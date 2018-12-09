@@ -1,0 +1,28 @@
+<!doctype html>
+{%if original_url%}
+        <a href="{{url_for('main_viewer')}}">Back</a>
+        <title> {{ original_url}} Page images viewer </title>
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+        <head>
+
+        </head>
+        <body>
+            <h3>{{original_url}} images:</h1>
+            {% for url in images %}
+                <b>{{url}}</b>
+                <img src="{{ url }}" width=150px>
+                <br>
+            {% endfor %}
+        </body>
+          
+{%else%}
+
+    <body>
+        <h1>Input  page url</h1>
+        <form method='get'>
+            <input name="url" type='text'>
+            <input type='submit' text='Go search'>
+        </form>
+        
+    </body>
+{%endif%}
