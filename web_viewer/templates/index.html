@@ -1,28 +1,44 @@
 <!doctype html>
-{%if original_url%}
-        <a href="{{url_for('main_viewer')}}">Back</a>
-        <title> {{ original_url}} Page images viewer </title>
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
-        <head>
+<head>
+    <title> Page images viewer </title>    
+    <style>
+        body{
+            padding: 50px;
+        }
+        img {
+          object-fit: cover;
+          width: 250px;
+          height: 250px;
+        }
+        .card
+        {
+            width:250px; 
+            height:250px; 
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+</head>
 
-        </head>
-        <body>
-            <h3>{{original_url}} images:</h1>
-            {% for url in images %}
-                <b>{{url}}</b>
-                <img src="{{ url }}" width=150px>
-                <br>
-            {% endfor %}
-        </body>
-          
-{%else%}
-
-    <body>
+<body>
+    <h2><a href="{{url_for('main_viewer')}}">Home</a><h2>
+    {%if not url %}
         <h1>Input  page url</h1>
         <form method='get'>
             <input name="url" type='text'>
             <input type='submit' text='Go search'>
         </form>
-        
-    </body>
-{%endif%}
+        <hr>    
+    {%endif%}}
+    <h2> Images:</h2>
+    <div style='display:inline; height:300px; min-width: 250px;'>
+        {% for (site_url, img_url) in images%}
+            <div class='card'>
+                <b><a href="{{site_url}}" > {{site_url[:20]}}... </a></b>
+                <img src="{{ img_url }}" alt="{{site_url[:20]}}" title="{{img_url}}">
+            </div>
+        {%endfor%}
+    </div>
+</body>
+
+<!-- if images|length ==0 -->
