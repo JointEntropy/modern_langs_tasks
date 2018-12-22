@@ -4,6 +4,7 @@
     <style>
         body{
             padding: 50px;
+            background-color: #eeeeee;
         }
         img {
           object-fit: cover;
@@ -16,6 +17,10 @@
             height:250px; 
             display: inline-block;
             text-align: center;
+            padding: 5px;
+            padding-top: 25px;
+            background-color: #fafafa;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -29,13 +34,13 @@
             <input type='submit' text='Go search'>
         </form>
         <hr>    
-    {%endif%}}
+    {%endif%}
     <h2> Images:</h2>
     <div style='display:inline; height:300px; min-width: 250px;'>
         {% for (site_url, img_url) in images%}
             <div class='card'>
                 <b><a href="{{site_url}}" > {{site_url[:20]}}... </a></b>
-                <img src="{{ img_url }}" alt="{{site_url[:20]}}" title="{{img_url}}">
+                <a href='{{img_url}}'> <img src="{{ img_url }}" alt="{{site_url[:20]}}" title="{{img_url}}"></a>
             </div>
         {%endfor%}
     </div>
